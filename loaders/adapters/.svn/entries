@@ -1,0 +1,35 @@
+10
+
+dir
+0
+http://subversion.assembla.com/svn/nooku-server/tags/12.1/code/templates/koowa/loaders/adapters
+http://subversion.assembla.com/svn/nooku-server
+add
+
+
+
+
+
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+2a0d3305-d588-42a0-b22d-91a91e92670e
+
+template.php
+file
+
+
+
+add
+
