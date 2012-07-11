@@ -7,9 +7,14 @@
 
 class TmplKoowaTemplate extends KTemplateDefault
 {
+	public $document;
+
 	public function __construct(KConfig $config)
 	{
 		parent::__construct($config);
+
+		//Set the document
+		$this->document = $config->document;
 
 		//Set the template filters
 		if(!empty($config->filters)) {
@@ -40,6 +45,7 @@ class TmplKoowaTemplate extends KTemplateDefault
 	{
 		$identifier = $this->getIdentifier();
 		$config->append(array(
+			'document'         => JFactory::getDocument(),
 			'base_url'         => KRequest::base(),
 			'tmpl_url'         => KRequest::base().'/templates/'.$identifier->package,
 			'media_url'        => KRequest::root().'/media',
@@ -62,7 +68,7 @@ class TmplKoowaTemplate extends KTemplateDefault
 
 	public function loadIdentifier($template, $data = array(), $process = true)
 	{
-		if(!isset($data['document'])) $data['document'] = JFactory::getDocument();
+		if(!isset($data['document'])) $data['document'] = $this->document;
 
 		if(is_array($data['document']->params)){
 			$params = new JParameter('');
@@ -106,5 +112,12 @@ class TmplKoowaTemplate extends KTemplateDefault
 		}
 
 		return $result;
+	}
+
+
+
+	public function countModules($position)
+	{
+		return $this->document->countModules($position);
 	}
 }
