@@ -41,7 +41,11 @@ class TmplKoowaLoaderAdapterTemplate extends KLoaderAdapterAbstract
 				$this->_basepath = $basepath;
 			}
 
+			$basepath = $this->_basepath;
+
 			$template = strtolower(array_shift($parts));
+
+			if($template == 'koowa') $basepath = JPATH_ROOT;
 
 			if(empty($parts)) $path = 'template';
 			else{
@@ -50,7 +54,7 @@ class TmplKoowaLoaderAdapterTemplate extends KLoaderAdapterAbstract
 				$path = implode('/', $parts).(count($parts) ? '/' : '').$file;
 			}
 
-			$path = $this->_basepath.'/templates/'.$template.'/'.$path.'.php';
+			$path = $basepath.'/templates/'.$template.'/'.$path.'.php';
 
 		}
 
